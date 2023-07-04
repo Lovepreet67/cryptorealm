@@ -85,7 +85,7 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
         const filtered = q.filter(
           (e) => e["coinId"] != result["transiction"]["coinId"]
         );
-        if (toAdd?.quantity != 0) return [toAdd, ...filtered];
+        if (toAdd?.quantity != 0) return [...filtered, toAdd];
         return filtered;
       });
     } else if (response.status == 400) {

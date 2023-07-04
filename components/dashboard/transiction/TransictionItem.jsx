@@ -33,10 +33,6 @@ export default function TransictionItem({ time, coin, type, total, quantity }) {
     `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false`,
     fetcher
   );
-  // const [loading, setLoading] = useState(true);
-  // const [imageError, setImageError] = useState(false);
-  // if (error) setImageError(false);
-  // console.log(data);
   return (
     <div className="sm:font-semibold grid grid-cols-5 sm:grid-cols-6 shadow-lg rounded-xl text-center content-center items-center px-4 py-1">
       <p className="hidden sm:block">{coin}</p>

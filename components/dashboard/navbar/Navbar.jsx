@@ -47,7 +47,7 @@ export default function Navbar({
         <input
           className="w-[100%] block  outline-none "
           type="text"
-          spellcheck="false"
+          spellCheck="false"
           placeholder="Search By coinId"
           value={value}
           onChange={handleChange}
