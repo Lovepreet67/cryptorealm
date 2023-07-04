@@ -38,7 +38,7 @@ export default function DashBoard({ user }) {
     console.log([...map.values()]);
     setQuantity(Array.from(map.values()));
     console.log(quantity);
-  }, [, user]);
+  }, [quantity, user]);
   const temp = transictions.reduce((acc, e) => {
     if (e["type"] == "sell") {
       acc += -e["investedMoney"] + e["quantity"] * e["price"];

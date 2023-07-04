@@ -1,5 +1,3 @@
-import { json } from "express";
-
 export default async function handler(req, res) {
   // we have to get jwt and ad it to the req.body
   // console.log(req.cookies.jwt);
@@ -25,12 +23,10 @@ export default async function handler(req, res) {
       res.status(400).json(result);
       return;
     }
-    res
-      .status(200)
-      .json({
-        msg: "success",
-        transiction: { ...result["transiction"], createdAt: new Date() },
-      });
+    res.status(200).json({
+      msg: "success",
+      transiction: { ...result["transiction"], createdAt: new Date() },
+    });
   } catch (err) {
     // console.log(err);
     res.status(404).json({ err: "something went wrong try again" });
