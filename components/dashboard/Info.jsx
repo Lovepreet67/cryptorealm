@@ -6,7 +6,6 @@ const formater = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 export default function Info({ username, money, change, quantity }) {
-  console.log(quantity.size);
   return (
     <div className="shadow-xl p-3  rounded-2xl">
       <p className="font-bold text-2xl">{username}</p>
@@ -29,7 +28,6 @@ export default function Info({ username, money, change, quantity }) {
         </div>
         {quantity.length != 0 ? (
           quantity.map((e) => {
-            console.log(e);
             return (
               <div
                 key={e["coinId"]}

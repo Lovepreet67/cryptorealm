@@ -23,12 +23,10 @@ export default function Navbar({
       );
       const rawResult = await response.json();
       const result = rawResult["coins"].slice(0, 4).map((e) => e["api_symbol"]);
-      console.log(result);
       setWatchList(result);
       setActiveSearch(true);
     } catch (err) {
       setValue("");
-      console.log(err);
     }
   }
   function handleChange(event) {

@@ -16,18 +16,21 @@ export default function TransitionList({ list }) {
       </div>
       <div className="overflow-scroll scrollbar-hide h-[70%] ">
         {list.length != 0 ? (
-          list.reverse().map((e) => {
-            return (
-              <TransictionItem
-                coin={e["coinId"]}
-                type={e["type"]}
-                quantity={e["quantity"]}
-                time={e["createdAt"]}
-                total={(e["quantity"] * e["price"]).toFixed(2)}
-                key={e["_id"]}
-              />
-            );
-          })
+          list
+            .slice()
+            .reverse()
+            .map((e) => {
+              return (
+                <TransictionItem
+                  coin={e["coinId"]}
+                  type={e["type"]}
+                  quantity={e["quantity"]}
+                  time={e["createdAt"]}
+                  total={(e["quantity"] * e["price"]).toFixed(2)}
+                  key={e["_id"]}
+                />
+              );
+            })
         ) : (
           <Nothing />
         )}

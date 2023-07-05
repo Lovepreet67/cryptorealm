@@ -1,10 +1,11 @@
 import React from "react";
 
 export default function Loading({ size }) {
-  console.log("in loading componet");
   return (
     <div
-      className={`space-x-1 m-auto  flex px-3 py-1 rounded-xl shadow-xl justify-center`}
+      className={`space-x-1 m-auto  flex px-3 py-1 rounded-xl shadow-xl justify-center max-w-${
+        3 * size
+      } h-${2 * size}`}
     >
       <div
         className={`duration-300 animate-bounce  h-${size} w-${size} rounded-full bg-gray-700`}

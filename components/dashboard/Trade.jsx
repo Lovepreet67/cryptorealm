@@ -7,14 +7,11 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
   const [loading, setLoading] = useState(false);
   async function submitHandler(event) {
     setLoading(true);
-    console.log("handler from trades");
     event.preventDefault();
     const data = {
       coinId: event.target.coinId.value,
       quantity: event.target.quantity.value,
     };
-    console.log("value from the form  : ");
-    console.log(data);
     const datajs = JSON.stringify(data);
     let response;
     if (buy)
@@ -32,7 +29,6 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
     const result = await response.json();
     setLoading(false);
     if (response.status == 200) {
-      console.log(result["transiction"]);
       setErr("");
       setMoney(
         (money) =>
@@ -40,7 +36,7 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
           (result["transiction"]["type"] == "sell" ? 1 : -1) *
             (result["transiction"]["price"] * result["transiction"]["quantity"])
       );
-      setTransictions((t) => [result["transiction"], ...t]);
+      setTransictions((t) => [...t, result["transiction"]]);
       setQuantity((q) => {
         let currCount = 0,
           price = 0,
@@ -49,29 +45,17 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
           if (e["coinId"] == result["transiction"]["coinId"]) {
             currCount = e["quantity"];
             price = e["price"];
-            return;
           }
         });
-        console.log(currCount);
-        console.log(price);
         if (result["transiction"]["type"] == "sell") {
           const CoinSold = result["transiction"]["quantity"];
-          const invested = result["transiction"]["invested"];
+          const invested = result["transiction"]["investedMoney"];
           toAdd = {
             coinId: result["transiction"]["coinId"],
-            quantity: currCount - result["transiction"]["quantity"],
-            price:
-              (currCount * price - invested) /
-              (currCount - result["transiction"]["quantity"]),
+            quantity: currCount - CoinSold,
+            price: (currCount * price - invested) / (currCount - CoinSold),
           };
         } else {
-          console.log("inside buy ");
-          console.log({
-            currCount,
-            price,
-            quantity: result["transiction"]["quantity"],
-            pricex: result["transiction"]["price"],
-          });
           toAdd = {
             coinId: result["transiction"]["coinId"],
             quantity: currCount + result["transiction"]["quantity"],
@@ -146,7 +130,7 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
               value={"Trade"}
             />
           ) : (
-            <Loading size={4} />
+            <Loading size={5} />
           )}
         </div>
       </form>

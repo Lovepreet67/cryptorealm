@@ -33,19 +33,14 @@ export default function DashBoard({ user }) {
         map.set(e["coinId"], e);
       }
     });
-    console.log(map);
-    console.log("inside use effect");
-    console.log([...map.values()]);
     setQuantity(Array.from(map.values()));
-    console.log(quantity);
-  }, [quantity, user]);
+  }, [user]);
   const temp = transictions.reduce((acc, e) => {
     if (e["type"] == "sell") {
       acc += -e["investedMoney"] + e["quantity"] * e["price"];
       return acc;
     } else return acc;
   }, 0);
-  console.log(temp);
   return (
     // <Loading size={5} />
     <div className="md:py-6 md:px-10 p-3">
