@@ -2,7 +2,8 @@ import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import useSWR from "swr";
 import React, { useState } from "react";
-import toast from "react-hot-toast";
+import toast, { useToaster } from "react-hot-toast";
+import Menu from "@/components/utilities/menu";
 const fetcher = (url) => fetch(url).then((r) => r.json());
 const formater = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -16,6 +17,7 @@ export default function Navbar({
   defaultValue,
 }) {
   const [value, setValue] = useState("");
+  const [open, setOpen] = useState(false);
   async function search(event) {
     event.preventDefault();
     let t = toast.loading("Searching ...");
@@ -78,7 +80,11 @@ export default function Navbar({
         <p className="border hidden md:block border-gray-300 rounded-3xl px-4 py-[2%]">
           {formater.format(balance)}
         </p>
-        <UserCircleIcon className="text-gray-500 h-10 w-10 " />
+        <UserCircleIcon
+          className="text-gray-500 h-10 w-10 "
+          onClick={() => setOpen((x) => !x)}
+        />
+        {open && <Menu />}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { ChevronDoubleUpIcon } from "@heroicons/react/24/solid";
+import toast from "react-hot-toast";
 export default function Navbar({ left, setLeft }) {
   const [active, setActive] = useState(false);
   return (
@@ -25,12 +26,25 @@ export default function Navbar({ left, setLeft }) {
             onClick={() => setActive(false)}
           />
         )}
-        <p className="hover:text-black ">About</p>
-        <p className="hover:text-black">Features</p>
+        <p
+          className="hover:text-black "
+          onClick={() => {
+            toast("Yet to be implimented \nSorry for inconvenience");
+          }}
+        >
+          About
+        </p>
         <p
           className="hover:text-black"
           onClick={() => {
-            console.log(left);
+            toast("Yet to be implimented \nSorry for inconvenience");
+          }}
+        >
+          Features
+        </p>
+        <p
+          className="hover:text-black"
+          onClick={() => {
             setActive(false);
             setLeft(3);
           }}
