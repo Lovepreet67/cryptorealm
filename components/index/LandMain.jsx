@@ -1,8 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import Hero from "./hero/Hero";
 import Card from "../utilities/Card";
 import ReviewCard from "../utilities/ReviewCard";
+import toast from "react-hot-toast";
+import { useState, useEffect } from "react";
 export default function LandMain({ left, setLeft }) {
+  const [width, setWidth] = useState(window.innerWidth);
+  function handleWindowSizeChange() {
+    if (width >= 800 && window.innerWidth < 800) {
+      toast("home Page is not \n optimized for small screen widths", {
+        duration: 2000,
+      });
+    }
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
   return (
     <div>
       <Hero left={left} setLeft={setLeft} />

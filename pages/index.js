@@ -1,12 +1,13 @@
 import Head from "next/head";
 import Navbar from "@/components/index/navbar/Navbar";
 import LandMain from "@/components/index/LandMain";
-import Footer from "@/components/index/Footer";
+import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 export default function Home() {
   const [left, setLeft] = useState(2);
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <Head>
         <meta
           name="viewport"

@@ -2,6 +2,7 @@ import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import useSWR from "swr";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 const fetcher = (url) => fetch(url).then((r) => r.json());
 const formater = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -17,19 +18,30 @@ export default function Navbar({
   const [value, setValue] = useState("");
   async function search(event) {
     event.preventDefault();
+    let t = toast.loading("Searching ...");
     try {
       const response = await fetch(
         `https://api.coingecko.com/api/v3/search?query=${value}`
       );
       const rawResult = await response.json();
       const result = rawResult["coins"].slice(0, 4).map((e) => e["api_symbol"]);
-      setWatchList(result);
-      setActiveSearch(true);
+      if (result.length == 0) {
+        toast.dismiss(t);
+        toast.error("Limit of Api Calls exceeded");
+      } else {
+        setWatchList(result);
+        setActiveSearch(true);
+      }
     } catch (err) {
+      toast.dismiss(t);
+      toast.error("Something went wrong");
       setValue("");
+    } finally {
+      toast.dismiss(t);
     }
   }
   function handleChange(event) {
+    if (event.key == "Enter") return search();
     setValue(event.target.value);
     if (event.target.value.trim() == "") {
       setWatchList(defaultValue);
@@ -42,14 +54,21 @@ export default function Navbar({
         CryptoRealm
       </p>
       <div className="flex font-semibold w-[100%]  md:w-[80%] pl-3 rounded-2xl mt-2  border-2 border-o">
-        <input
+        <form
+          action="#"
+          onSubmit={search}
           className="w-[100%] block  outline-none "
-          type="text"
-          spellCheck="false"
-          placeholder="Search By coinId"
-          value={value}
-          onChange={handleChange}
-        />
+        >
+          <input
+            className="w-[100%] block  outline-none "
+            type="text"
+            spellCheck="false"
+            placeholder="Search By coinId"
+            value={value}
+            onChange={handleChange}
+            onSubmit={search}
+          />
+        </form>
         <MagnifyingGlassIcon
           className="h-8 w-8 hover:cursor-pointer font-bold mr-4"
           onClick={search}

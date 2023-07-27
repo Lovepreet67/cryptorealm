@@ -7,6 +7,7 @@ import SearchResultList from "@/components/dashboard/search/SearchResultList";
 import React, { useEffect, useState } from "react";
 import Loading from "@/components/utilities/Loading";
 import { useRouter } from "next/router";
+import { Toaster } from "react-hot-toast";
 export default function DashBoard({ user }) {
   const router = useRouter();
   if (!user) {
@@ -44,6 +45,7 @@ export default function DashBoard({ user }) {
   return (
     // <Loading size={5} />
     <div className="md:py-6 md:px-10 p-3">
+      <Toaster position="top-center" reverseOrder={false} />
       <Navbar
         balance={money}
         setActiveSearch={setActiveSearch}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const router = useRouter();
@@ -13,20 +14,27 @@ export default function Login() {
     };
     const jsonData = JSON.stringify(data);
     // sending request
-    const response = await fetch("/api/user/login", {
+    const promise = fetch("/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: jsonData,
     });
+    const t = toast.loading("Loging In ...");
+    const response = await promise;
     const result = await response.json();
     // err handling
     if (result.invalidUserName) {
+      toast.dismiss(t);
       setValid(false);
     } else if (response.status == 404) {
+      toast.dismiss(t);
+      toast.error("Something went wrong");
       console.log(result.err);
     } else {
+      toast.dismiss(t);
+      toast.success("Logged In");
       router.push("/dashboard");
       console.log(result);
     }

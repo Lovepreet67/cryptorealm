@@ -1,33 +1,36 @@
 import React, { useState } from "react";
 import Loading from "../utilities/Loading";
+import toast from "react-hot-toast";
 
 export default function Trade({ setMoney, setTransictions, setQuantity }) {
   const [buy, SetBuy] = useState(true);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   async function submitHandler(event) {
-    setLoading(true);
     event.preventDefault();
+    setLoading(true);
     const data = {
       coinId: event.target.coinId.value,
       quantity: event.target.quantity.value,
     };
     const datajs = JSON.stringify(data);
-    let response;
-    if (buy)
+    let response, t;
+    if (buy) {
+      t = toast.loading("Buying ...");
       response = await fetch("/api/trade/buy", {
         method: "POST",
         body: datajs,
         redirect: "follow",
       });
-    else
+    } else {
+      t = toast.loading("Selling ...");
       response = await fetch("/api/trade/sell", {
         method: "POST",
         body: datajs,
         redirect: "follow",
       });
+    }
     const result = await response.json();
-    setLoading(false);
     if (response.status == 200) {
       setErr("");
       setMoney(
@@ -72,12 +75,19 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
         if (toAdd?.quantity != 0) return [...filtered, toAdd];
         return filtered;
       });
+      toast.dismiss(t);
+      toast.success("Transiction completed ");
+      setLoading(false);
     } else if (response.status == 400) {
+      toast.dismiss(t);
+      toast.error(result["err"]);
       setErr(result["err"]);
-    } else if (response.status == 404) {
-      setErr("something went wrong");
+      setLoading(false);
     } else {
-      alert("not handeled error occur");
+      toast.dismiss(t);
+      toast.error("Something went wrong");
+      setErr("something went wrong");
+      setLoading(false);
     }
   }
   return (
@@ -123,15 +133,12 @@ export default function Trade({ setMoney, setTransictions, setQuantity }) {
         <br />
         <div>
           {err.size != 0 && <p className=" text-red-500">{err}</p>}
-          {!loading ? (
-            <input
-              type="submit"
-              className=" px-3 bg-o font-semibold cursor-pointer py-1 w-[30%] border-o border-2 rounded-lg mx-auto text-lg"
-              value={"Trade"}
-            />
-          ) : (
-            <Loading size={5} />
-          )}
+          <input
+            type="submit"
+            className=" px-3 bg-o font-semibold cursor-pointer py-1 w-[30%] border-o border-2 rounded-lg mx-auto text-lg"
+            value={"Trade"}
+            disabled={loading}
+          />
         </div>
       </form>
     </div>

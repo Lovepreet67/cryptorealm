@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Signup() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function Signup() {
       email: event.target.email.value,
     };
     const jsonData = JSON.stringify(data);
+    const t = toast.loading("Signing you up");
     const response = await fetch("/api/user/signup", {
       method: "POST",
       headers: {
@@ -20,8 +22,12 @@ export default function Signup() {
     });
     const result = await response.json();
     if (result.invalidUserName) {
+      toast.dismiss(t);
       setValid(false);
     } else {
+      toast.dismiss(t);
+      toast.success("Signed up");
+      const t1 = toast.loading("Logging in");
       const loginResponse = await fetch("/api/user/login", {
         method: "POST",
         headers: {
@@ -30,6 +36,8 @@ export default function Signup() {
         body: jsonData,
       });
       const loginResult = await loginResponse.json();
+      toast.dismiss(t1);
+      toast.success("Logged In");
       router.push("/dashboard");
     }
   }
