@@ -1,10 +1,7 @@
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import useSWR from "swr";
 import React, { useState } from "react";
-import toast, { useToaster } from "react-hot-toast";
-import Menu from "@/components/utilities/menu";
-const fetcher = (url) => fetch(url).then((r) => r.json());
+import Menu from "@/components/utilities/Menu";
 const formater = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
