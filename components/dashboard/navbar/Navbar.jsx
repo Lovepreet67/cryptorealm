@@ -1,5 +1,6 @@
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import Menu from "@/components/utilities/Menu";
 const formater = new Intl.NumberFormat("en-US", {
