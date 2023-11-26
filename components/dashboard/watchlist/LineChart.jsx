@@ -5,14 +5,14 @@ import Loading from "@/components/utilities/Loading";
 import { ChartBarIcon } from "@heroicons/react/24/solid";
 export default function LineChart({ coin, color, type }) {
   const url =
-    "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7&interval=hourly";
+    "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7";
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const {
     data: dataRaw,
     error,
     isLoading,
   } = useSWR(
-    `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=7&interval=hourly`,
+    `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=7`,
     fetcher
   );
   if (isLoading) return <Loading size={4} />;
