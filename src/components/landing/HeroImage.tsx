@@ -10,16 +10,16 @@ import { useNavigate } from "react-router-dom";
 
 // types for the forms
 export interface LoginFormData {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
 }
 const LoginFormSchema: ZodType<LoginFormData> = z.object({
   username: z.string().min(1, { message: "Please Enter username" }),
   password: z.string().min(1, { message: "Please Enter password" }),
 });
 export interface SignupFormData extends LoginFormData {
-  email: string;
-  passwordCopy: string;
+  email?: string;
+  passwordCopy?: string;
 }
 const SignupFormSchema: ZodType<SignupFormData> = z
   .object({
@@ -139,14 +139,14 @@ function Signup({ visible }: { visible: boolean }) {
           className={"border-b-2 outline-none"}
           placeholder={"Password"}
           type={"password"}
-          unselectable
+          unselectable={"on"}
           {...register("password")}
         />
         <input
           className={"border-b-2 outline-none"}
           placeholder={"Re enter Password"}
           type={"password"}
-          unselectable
+          unselectable={"on"}
           {...register("passwordCopy")}
         />
         <p className={"self-start text-rose-500 -my-3"}>

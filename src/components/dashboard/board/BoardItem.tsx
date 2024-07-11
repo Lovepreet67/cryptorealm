@@ -19,7 +19,13 @@ interface LoadingState {
 function BoardItem({ coinId }: { coinId: string }) {
   const [expanded, setExpanded] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [data, setData] = useState<BoardItemData>({});
+  const [data, setData] = useState<BoardItemData>({
+    rank: 0,
+    id: "",
+    price: 0,
+    d1: 0,
+    d7: 0,
+  });
   const [loading, setLoading] = useState<LoadingState>({
     loading: true,
     error: "",
@@ -34,7 +40,6 @@ function BoardItem({ coinId }: { coinId: string }) {
         setLoading({ loading: false, error: "" });
         setData({
           rank: coinDetails.market_cap_rank,
-          iconLink: process.env.BASE_URL + `/coin_icon/${coinDetails.id}.webp`,
           id: coinDetails.id,
           price: coinDetails.current_price,
           d1: coinDetails.price_change_percentage_24h,
@@ -107,7 +112,7 @@ function BoardItem({ coinId }: { coinId: string }) {
         {Math.round(data.d7 * 100) / 100}%
       </p>
       <div className={"flex justify-between gap-3 items-center"}>
-        <LineChart id={data.id} coinId={data.id} change={data.d7} />
+        <LineChart coinId={data.id} change={data.d7} />
         <img
           className={
             "aspect-square hidden md:block  h-5 md:h-7 transition-all duration-300  " +

@@ -38,9 +38,9 @@ function Navbar() {
         className={
           "w-[80%] md:w-[60%] border-2 rounded-xl px-6 items-center justify-center flex pr-2"
         }
-        onSubmit={async (e) => {
+        onSubmit={async (e: any) => {
           e.preventDefault();
-          if (e.target.elements["coinId"].value == "") {
+          if (e.target.elements && e.target.elements["coinId"].value == "") {
             toast.error("enter id before searching");
             return;
           }

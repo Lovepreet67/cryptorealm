@@ -13,7 +13,6 @@ import { populate as populateBalance } from "../redux/balance.ts";
 import { populate as populateWatchlist } from "../redux/watchlist.ts";
 import { populate as populateTransactions } from "../redux/transactions/transaction.ts";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/utilities/Loading.tsx";
 import Dummy from "../components/utilities/Dummy.tsx";
 
 function Dashboard() {

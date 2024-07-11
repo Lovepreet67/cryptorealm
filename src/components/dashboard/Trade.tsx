@@ -7,8 +7,8 @@ import { useAppDispatch } from "../../redux/hooks.ts";
 import { add as addTransaction } from "../../redux/transactions/transaction.ts";
 import { updateBalance } from "../../redux/balance.ts";
 export interface TradeFormData {
-  coinId: string;
-  quantity: number;
+  coinId?: string;
+  quantity?: number;
 }
 const TradeFromSchema: ZodType<TradeFormData> = z.object({
   coinId: z.string().min(1, { message: "Enter valid coinId" }),

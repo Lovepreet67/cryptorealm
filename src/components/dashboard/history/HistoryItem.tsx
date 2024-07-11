@@ -1,7 +1,7 @@
 import { Transaction } from "../../../redux/transactions/transaction.ts";
 
 import { currencyFormator } from "../board/CurrencyFormator.tsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 function HistoryItem({
   coinId,
   quantity,

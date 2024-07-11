@@ -39,7 +39,10 @@ function History() {
           }
         >
           {[...transactions].reverse().map((transaction) => (
-            <HistoryItem key={transaction.updatedAt} {...transaction} />
+            <HistoryItem
+              key={transaction.updatedAt.toString()}
+              {...transaction}
+            />
           ))}
         </div>
       )}
