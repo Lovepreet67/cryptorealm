@@ -8,6 +8,7 @@ function Navbar({ setState }: { setState: Dispatch<SetStateAction<string>> }) {
       e.preventDefault();
       e.stopPropagation();
       setState(state);
+      setOpen(false);
     },
     [setState],
   );
@@ -48,13 +49,13 @@ function Navbar({ setState }: { setState: Dispatch<SetStateAction<string>> }) {
         >
           {!open ? (
             <img
-              className={"h-10 "}
+              className={"h-7 md:h-10 "}
               src={"/images/hamburger.svg"}
               alt={"Hamburger"}
             />
           ) : (
             <img
-              className={"h-10 "}
+              className={"h-7 md:h-10 "}
               src={"/images/cross.svg"}
               alt={"Hamburger"}
             />

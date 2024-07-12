@@ -59,7 +59,7 @@ function Outcome() {
         <p
           onClick={() => setState("fch")}
           className={
-            "rounded-xl shadow-md px-7 py-1 w-fit  text-l font-bold transition-all cursor-pointer " +
+            "rounded-xl h-fit shadow-md px-3 md:px-7 py-1 w-fit  text-l font-bold transition-all cursor-pointer " +
             (state == "fch" ? "text-rose-500" : "")
           }
         >
@@ -68,7 +68,7 @@ function Outcome() {
         <p
           onClick={() => setState("coins")}
           className={
-            "rounded-xl shadow-md px-7 py-1 w-fit  text-l font-bold transition-all cursor-pointer " +
+            "rounded-xl h-fit shadow-md px-3 md:px-7 py-1 w-fit  text-l font-bold transition-all cursor-pointer " +
             (state == "coins" ? "text-rose-500" : "")
           }
         >
@@ -78,9 +78,7 @@ function Outcome() {
       <div
         className={
           "h-0 md:h-fit overflow-hidden transition-all duration-1000 " +
-          (state == "fch"
-            ? "h-48"
-            : `h-${Array.from(accumulatedCoins.keys()).length == 1 ? 16 : 32}`)
+          (state == "fch" ? "h-48" : `h-32`)
         }
       >
         {state == "fch" ? (
