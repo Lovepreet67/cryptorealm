@@ -43,7 +43,6 @@ function Board() {
             loading={loading}
             error={error}
             nothing={watchlist.length == 0}
-            //TODO: - check if size is correct
             size={10}
           />
         ) : (

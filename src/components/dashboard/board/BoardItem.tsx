@@ -51,9 +51,6 @@ function BoardItem({ coinId }: { coinId: string }) {
   if (loading.loading || loading.error.length > 0) {
     return (
       <div className={"min-h-10 md:min-h-16 flex items-center justify-center"}>
-        {
-          //TODO: -check if size is correct
-        }
         <Dummy
           loading={loading.loading as boolean}
           error={loading.error}

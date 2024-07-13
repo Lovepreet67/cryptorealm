@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Loading({ size = 5 }: { size?: number }) {
+function Loading({ size = 8 }: { size?: number }) {
   const [curr, setCurr] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -10,32 +10,30 @@ function Loading({ size = 5 }: { size?: number }) {
       clearInterval(interval);
     };
   }, []);
+
+  const dotStyle = (isActive: boolean) =>
+    `transition-all duration-700 rounded-full ${
+      isActive ? "scale-110 -translate-y-5 bg-rose-500" : "bg-rose-100"
+    }`;
+
   return (
-    <div className={"flex w-full items-center justify-center  "}>
-      <div className={"flex gap-1 items-center h-fit w-fit"}>
+    <div className="flex w-full items-center justify-center">
+      <div className="flex gap-1 items-center">
         <div
-          className={
-            `transition-all duration-700  p-[${size}px] rounded-full bg-rose-100 ` +
-            (curr == 0 ? "scale-110 -translate-y-5 bg-rose-500" : "")
-          }
+          className={dotStyle(curr === 0)}
+          style={{ padding: `${size}px` }}
         ></div>
         <div
-          className={
-            `transition-all duration-700  p-[${size}px] rounded-full bg-rose-100  ` +
-            (curr == 1 ? "scale-110 -translate-y-5 bg-rose-500" : "")
-          }
+          className={dotStyle(curr === 1)}
+          style={{ padding: `${size}px` }}
         ></div>
         <div
-          className={
-            `transition-all duration-700 p-[${size}px] rounded-full bg-rose-100 ` +
-            (curr == 2 ? "scale-110 -translate-y-5 bg-rose-500" : "")
-          }
+          className={dotStyle(curr === 2)}
+          style={{ padding: `${size}px` }}
         ></div>
         <div
-          className={
-            `transition-all duration-700 p-[${size}px] rounded-full bg-rose-100 ` +
-            (curr == 3 ? "scale-110 -translate-y-5 bg-rose-500" : "")
-          }
+          className={dotStyle(curr === 3)}
+          style={{ padding: `${size}px` }}
         ></div>
       </div>
     </div>

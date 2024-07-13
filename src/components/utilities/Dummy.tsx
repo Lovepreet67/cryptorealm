@@ -11,7 +11,7 @@ function Dummy({
   nothing?: boolean;
   size?: number;
 }) {
-  if (loading) return <Loading size={size} />;
+  if (loading) return <Loading size={!size ? 5 : size} />;
   else if (error?.length > 0)
     return (
       <div
