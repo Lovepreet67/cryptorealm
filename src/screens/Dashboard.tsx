@@ -51,7 +51,7 @@ function Dashboard() {
       <div
         className={"min-h-screen min-w-full flex items-center justify-center"}
       >
-        <Dummy loading={true} size={7} />
+        <Dummy loading={true} size={10} error={""} nothing={false} />
       </div>
     );
   return (

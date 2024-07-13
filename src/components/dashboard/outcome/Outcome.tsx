@@ -96,7 +96,7 @@ function Outcome() {
         ) : (
           <div
             className={
-              "grid md:grid-cols-2 h-full overflow-scroll scrollbar-hide"
+              "grid md:grid-cols-2 h-fit overflow-scroll scrollbar-hide"
             }
           >
             {Array.from(accumulatedCoins.keys()).map((t: string) => (

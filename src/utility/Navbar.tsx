@@ -27,7 +27,7 @@ function Navbar({ setState }: { setState: Dispatch<SetStateAction<string>> }) {
   const [open, setOpen] = useState(false);
   return (
     <div className={"flex  md:mx-5 justify-between mt-3  "}>
-      <div className={"text-2xl font-semibold"}>CryptoRealm</div>
+      <div className={"text-2xl font-bold md:font-semibold"}>CryptoRealm</div>
       <div className={"hidden md:flex gap-5 text-lg items-center"}>
         <SecondaryButton title={"About"} onClick={linkHandler("About")} />
         <SecondaryButton title={"Features"} onClick={linkHandler("Features")} />

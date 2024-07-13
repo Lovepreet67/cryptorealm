@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Loading({ size = 3 }: { size?: number }) {
+function Loading({ size = 5 }: { size?: number }) {
   const [curr, setCurr] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {

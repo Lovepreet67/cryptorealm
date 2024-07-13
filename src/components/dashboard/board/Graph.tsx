@@ -150,11 +150,11 @@ function Graph({ coinId }: { coinId: string }) {
   return (
     <div className={"w-full mt-4 md:mt-3"}>
       <div className={"flex justify-between"}>
-        <div className={"flex w-fit gap-x-3"}>
+        <div className={"flex w-fit md:gap-x-3 gap-x-1.5"}>
           <div
             onClick={() => setGraphType("1d")}
             className={
-              "text-sm md:text-lg px-2 md:px-5 py-0.5 border-[1px] md:border-2 rounded-xl transition-all cursor-pointer " +
+              "text-sm md:text-lg px-1.5 md:px-5 py-0.5 border-[1px] md:border-2 rounded-xl transition-all cursor-pointer " +
               (graphType == "1d" ? "text-rose-500" : "")
             }
           >
@@ -163,7 +163,7 @@ function Graph({ coinId }: { coinId: string }) {
           <div
             onClick={() => setGraphType("7d")}
             className={
-              "text-sm md:text-lg px-2 md:px-5 py-0.5 border-[1px] md:border-2 rounded-xl transition-all cursor-pointer " +
+              "text-sm md:text-lg px-1.5 md:px-5 py-0.5 border-[1px] md:border-2 rounded-xl transition-all cursor-pointer " +
               (graphType == "7d" ? "text-rose-500" : "")
             }
           >
@@ -172,7 +172,7 @@ function Graph({ coinId }: { coinId: string }) {
           <div
             onClick={() => setGraphType("30d")}
             className={
-              "text-sm md:text-lg px-2 md:px-5 py-0.5 border-[1px] md:border-2 rounded-xl transition-all cursor-pointer " +
+              "text-sm md:text-lg px-1.5 md:px-5 py-0.5 border-[1px] md:border-2 rounded-xl transition-all cursor-pointer " +
               (graphType == "30d" ? "text-rose-500 " : "")
             }
           >

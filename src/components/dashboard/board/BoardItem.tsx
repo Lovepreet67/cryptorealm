@@ -51,7 +51,14 @@ function BoardItem({ coinId }: { coinId: string }) {
   if (loading.loading || loading.error.length > 0) {
     return (
       <div className={"min-h-10 md:min-h-16 flex items-center justify-center"}>
-        <Dummy loading={loading.loading as boolean} error={loading.error} />
+        {
+          //TODO: -check if size is correct
+        }
+        <Dummy
+          loading={loading.loading as boolean}
+          error={loading.error}
+          size={5}
+        />
       </div>
     );
   }
@@ -70,7 +77,9 @@ function BoardItem({ coinId }: { coinId: string }) {
       <p className={"overflow-hidden whitespace-nowrap text-ellipsis"}>
         {data.id[0].toUpperCase() + data.id.slice(1)}
       </p>
-      <p>{currencyFormator.format(data.price)}</p>
+      <p className={"overflow-hidden text-ellipsis"}>
+        {currencyFormator.format(data.price)}
+      </p>
       <div className={"flex  justify-between"}>
         <p
           className={

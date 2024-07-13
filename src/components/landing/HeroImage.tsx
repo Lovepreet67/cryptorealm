@@ -55,7 +55,7 @@ function Login({ visible }: { visible: boolean }) {
   return (
     <div
       className={
-        "flex md:gap-10 justify-center shadow-md rounded-xl p-10 transform duration-500 z-20 " +
+        "flex md:gap-10 justify-center shadow-md rounded-xl md:p-10  transform duration-500 z-20 " +
         (visible ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0")
       }
     >
@@ -113,7 +113,7 @@ function Signup({ visible }: { visible: boolean }) {
   return (
     <div
       className={
-        "flex md:gap-10 justify-center shadow-md rounded-xl p-10 py-3 md:py-7 transform  duration-500 z-20  " +
+        "flex md:gap-10 justify-center shadow-md rounded-xl md:p-10 py-3 md:py-7 transform  duration-500 z-20  " +
         (visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0")
       }
     >

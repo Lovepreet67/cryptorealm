@@ -13,7 +13,8 @@ export default function LineChart({ coinId, change }) {
     })();
   }, [coinId]);
   if (window.innerWidth <= 768) return <div className={"hidden"}></div>;
-  if (!graph && window.innerWidth > 768) return <Dummy loading={true} />;
+  if (!graph && window.innerWidth > 768)
+    return <Dummy loading={true} size={5} />;
   else {
     const data = {
       labels: [...Array(graph.length).keys()],

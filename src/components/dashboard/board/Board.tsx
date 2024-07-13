@@ -26,7 +26,7 @@ function Board() {
       </div>
       <div
         className={
-          "grid grid-cols-[7%_14%_17%_30%]  md:grid-cols-[7%_7%_10%_14%_12%_10%_15%] py-1 justify-evenly  rounded-xl font-bold border-b-4"
+          "grid grid-cols-[7%_14%_17%_35%]  md:grid-cols-[7%_7%_10%_14%_12%_10%_15%] py-1 justify-evenly  rounded-xl font-bold border-b-4"
         }
       >
         <p className={"hidden md:block"}>Rank</p>
@@ -43,6 +43,8 @@ function Board() {
             loading={loading}
             error={error}
             nothing={watchlist.length == 0}
+            //TODO: - check if size is correct
+            size={10}
           />
         ) : (
           watchlist.map((coinId) => {

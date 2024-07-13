@@ -31,8 +31,14 @@ function Hero({
 
   return (
     <div className={"relative flex h-fit items-center justify-center"}>
-      <div className={"grid md:grid-cols-2  overflow-hidden  "}>
-        <div className="absolute inset-0 md:hidden flex justify-center items-center overflow-hidden w-[90%]">
+      <div className={"grid md:grid-cols-2  overflow-hidden"}>
+        {/*background image for the small screen*/}
+        <div
+          className={
+            "absolute inset-0 md:hidden flex justify-center items-center overflow-hidden w-[90%] " +
+            (state != "image" ? "hidden" : "")
+          }
+        >
           <img
             className="blur-sm opacity-40 w-[25%] aspect-square"
             src="/images/bitcoin.svg"
